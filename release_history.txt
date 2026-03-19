@@ -1,0 +1,26 @@
+— 2026-03-20 v0.0.4 ADD readme.md file
+    QuietValeera.toc | 1 insertion, 1 deletion
+    README.md | 76 insertions, 0 deletions
+
+— 2026-03-20 v0.0.3 ADD origin to LUA comments
+    QuietValeera.lua | 1 insertion, 0 deletions
+    QuietValeera.toc | 1 insertion, 1 deletion
+
+— 2026-03-20 ADD standard yml and feature/bug rpt templates
+    .github/ISSUE_TEMPLATE/bug_report.md | 32 insertions, 0 deletions
+    .github/ISSUE_TEMPLATE/feature_request.md | 20 insertions, 0 deletions
+    .github/workflows/release.yml | 127 insertions, 0 deletions
+
+— 2026-03-20 v0.0.2 ADD license file
+    LICENSE | 674 insertions, 0 deletions
+    QuietValeera.toc | 1 insertion, 1 deletion
+
+— 2026-03-20 v0.0.1 TOC bump, ADD icon and logo files
+    QuietValeera.toc | 2 insertions, 2 deletions
+    media/QuietValeera-logo.png | added
+
+— 2026-03-20 Initial commit
+    QuietValeera.lua | 18 insertions, 0 deletions
+    QuietValeera.toc | 10 insertions, 0 deletions
+    media/QuietValeera-icon.blp | added
+    media/QuietValeera-icon.png | added
