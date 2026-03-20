@@ -17,3 +17,25 @@ end
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("PLAYER_LOGIN") -- fires once per session
 frame:SetScript("OnEvent", MuteSounds)
+
+local function ValeeraTextFilter(self, event, msg, author, ...)
+    if author == "Valeera Sanguinar" then
+        return true     -- block the line
+    end
+    -- optional: block by keyword
+    -- if msg:find("some Valeera phrase") then return true end
+    return false        -- allow others
+end
+
+local events = {
+    "CHAT_MSG_MONSTER_SAY",
+    "CHAT_MSG_MONSTER_YELL",
+    "CHAT_MSG_SAY",
+    "CHAT_MSG_EMOTE",
+    "CHAT_MSG_TEXT_EMOTE",
+    "CHAT_MSG_MONSTER_EMOTE",
+}
+
+for _, ev in ipairs(events) do
+    ChatFrame_AddMessageEventFilter(ev, ValeeraTextFilter)
+end
