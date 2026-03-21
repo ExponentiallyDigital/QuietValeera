@@ -21,24 +21,16 @@ frame:SetScript("OnEvent", MuteSounds)
 -- Debug routing state
 local debugMode = false
 local debugWindowName = "Debug"
+local debugFrameCreated = false
 
 local function GetDebugChatFrame()
     local target = debugWindowName:lower()
 
-    -- first try exact match using ChatFrame_GetMessageEvent, then fallback to string compare of frame name
+    -- Use FCF_GetChatWindowInfo to reliably get window names
     for i = 1, NUM_CHAT_WINDOWS do
-        local frame = _G["ChatFrame" .. i]
-        if frame then
-            local name
-            if FCF_GetWindowName then
-                name = FCF_GetWindowName(frame)
-            elseif frame.GetName then
-                name = frame:GetName()
-            end
-
-            if name and name:lower() == target then
-                return frame
-            end
+        local name = FCF_GetChatWindowInfo(i)
+        if name and name:lower() == target then
+            return _G["ChatFrame" .. i]
         end
     end
 
@@ -71,12 +63,17 @@ local function CreateDebugChatFrame()
         return frame
     end
 
+    if debugFrameCreated then
+        return nil  -- prevent multiple creations
+    end
+
     if not FCF_OpenNewWindow then
         return nil
     end
 
     frame = FCF_OpenNewWindow(debugWindowName)
     if frame then
+        debugFrameCreated = true
         if FCF_SetWindowName then
             FCF_SetWindowName(frame, debugWindowName)
         end

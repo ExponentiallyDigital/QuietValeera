@@ -1,8 +1,8 @@
 ## Interface: 120001, 120000
 ## Title: QuietValeera
-## Notes: Disable Valeera's speech in Midnight Delves
+## Notes: Disable Valeera's speech, chat, and emotes in Midnight Delves
 ## Author: ArcNineOhNine
-## Version: 0.1.6
+## Version: 0.1.7
 ## Category: ArcNineOhNine
 ## IconTexture: Interface\AddOns\QuietValeera\media\QuietValeera-icon
 ## SavedVariables:
