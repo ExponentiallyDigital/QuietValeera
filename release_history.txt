@@ -1,3 +1,48 @@
+— 2026-03-21 v0.1.10 DOC updated readme with new functionality (now also mutes chat text and allows for a debug chat window where all her chat messages are routed), added images to readme.
+    QuietValeera.toc | 2 insertions, 2 deletions
+    README.md | 77 insertions, 17 deletions
+    images/valeera-system-messages-1.png | added
+    images/valeera-system-messages-2.png | added
+
+— 2026-03-21 v0.1.9 FIX emote formatting
+    QuietValeera.lua | 15 insertions, 9 deletions
+    QuietValeera.toc | 1 insertion, 1 deletion
+
+— 2026-03-21 v0.1.8 FIX doubling of message output with debug enabled
+    QuietValeera.lua | 1 insertion, 10 deletions
+    QuietValeera.toc | 1 insertion, 1 deletion
+
+— 2026-03-21 v0.1.7 FIX debug window creation
+    QuietValeera.lua | 10 insertions, 13 deletions
+    QuietValeera.toc | 2 insertions, 2 deletions
+
+— 2026-03-21 v0.1.6 FIX debug sources only show emote and say, all other message sources unset, if debug chat window already exists, does not change window sources
+    QuietValeera.lua | 32 insertions, 2 deletions
+    QuietValeera.toc | 1 insertion, 1 deletion
+
+— 2026-03-21 v0.1.5 FIX debug frame case sensitivity
+    QuietValeera.lua | 6 insertions, 2 deletions
+    QuietValeera.toc | 1 insertion, 1 deletion
+
+— 2026-03-21 v0.1.4  ADD debug option
+    QuietValeera.lua | 82 insertions, 3 deletions
+    QuietValeera.toc | 1 insertion, 1 deletion
+
+— 2026-03-21 v0.1.3 optimised for speed and low memory usage
+    QuietValeera.lua | 10 insertions, 32 deletions
+    QuietValeera.toc | 1 insertion, 1 deletion
+
+— 2026-03-21 v0.1.1 ADD disable display of her chat messages and emotes too.
+    QuietValeera.lua | 17 insertions, 3 deletions
+    QuietValeera.toc | 1 insertion, 1 deletion
+
+— 2026-03-20 v0.1.1 ADD supress Val's emotes in chat too (needs testing!)
+    QuietValeera.lua | 22 insertions, 0 deletions
+    QuietValeera.toc | 1 insertion, 1 deletion
+
+— 2026-03-19 Update release_history.txt for v0.0.4
+    release_history.txt | 26 insertions, 0 deletions
+
 — 2026-03-20 v0.0.4 ADD readme.md file
     QuietValeera.toc | 1 insertion, 1 deletion
     README.md | 76 insertions, 0 deletions
