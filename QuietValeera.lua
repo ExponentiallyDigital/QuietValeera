@@ -22,6 +22,8 @@ frame:SetScript("OnEvent", MuteSounds)
 local debugMode = false
 local debugWindowName = "Debug"
 local debugFrameCreated = false
+local lastDebugMsg = ""
+local lastDebugAuthor = ""
 
 local function GetDebugChatFrame()
     local target = debugWindowName:lower()
@@ -86,16 +88,20 @@ local function ValeeraTextFilter(self, event, msg, author, ...)
     end
 
     if debugMode then
-        local debugFrame = GetDebugChatFrame() or CreateDebugChatFrame()
-        if debugFrame and debugFrame.AddMessage then
-            local prefix = "[QuietValeera Debug]"
-            local text
-            if event == "CHAT_MSG_MONSTER_EMOTE" or event == "CHAT_MSG_TEXT_EMOTE" or event == "CHAT_MSG_EMOTE" then
-                text = format("%s %s", author, msg)
-            else
-                text = format("%s: %s", author, msg)
+        if msg ~= lastDebugMsg or author ~= lastDebugAuthor then
+            lastDebugMsg = msg
+            lastDebugAuthor = author
+            local debugFrame = GetDebugChatFrame() or CreateDebugChatFrame()
+            if debugFrame and debugFrame.AddMessage then
+                local prefix = "[QuietValeera Debug]"
+                local text
+                if event == "CHAT_MSG_MONSTER_EMOTE" or event == "CHAT_MSG_TEXT_EMOTE" or event == "CHAT_MSG_EMOTE" then
+                    text = format(msg, author)
+                else
+                    text = format("%s: %s", author, msg)
+                end
+                debugFrame:AddMessage("|cff00ff00" .. prefix .. "|r " .. text)
             end
-            debugFrame:AddMessage("|cff00ff00" .. prefix .. "|r " .. text)
         end
     end
 
