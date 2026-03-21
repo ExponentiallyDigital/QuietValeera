@@ -18,38 +18,16 @@ local frame = CreateFrame("Frame")
 frame:RegisterEvent("PLAYER_LOGIN") -- fires once per session
 frame:SetScript("OnEvent", MuteSounds)
 
--- Check if a chat type is enabled in chat settings
-local function IsChatTypeEnabled(event)
-    local chatTypeIndex = GetChatTypeIndex(event)
-    if not chatTypeIndex then return true end
-    
-    local info = ChatTypeInfo[chatTypeIndex]
-    return info and info.shown ~= false
-end
-
+-- Ultra-fast text filter - only called for enabled chat types
+-- No need to check if chat type is enabled; WoW only calls this filter for messages it will show
 local function ValeeraTextFilter(self, event, msg, author, ...)
-    -- Check if Valeera sent this message
-    if author == "Valeera Sanguinar" then
-        -- If the chat type is disabled, block it (user doesn't want to see it anyway)
-        if not IsChatTypeEnabled(event) then
-            return true
-        end
-        -- Chat type is enabled, so block Valeera's messages specifically
-        return true
-    end
-    
-    return false        -- allow others
+    return author == "Valeera Sanguinar"
 end
 
-local events = {
-    "CHAT_MSG_MONSTER_SAY",
-    "CHAT_MSG_MONSTER_YELL",
-    "CHAT_MSG_SAY",
-    "CHAT_MSG_EMOTE",
-    "CHAT_MSG_TEXT_EMOTE",
-    "CHAT_MSG_MONSTER_EMOTE",
-}
-
-for _, ev in ipairs(events) do
-    ChatFrame_AddMessageEventFilter(ev, ValeeraTextFilter)
-end
+-- Register filter on specific events
+ChatFrame_AddMessageEventFilter("CHAT_MSG_MONSTER_SAY", ValeeraTextFilter)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_MONSTER_YELL", ValeeraTextFilter)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", ValeeraTextFilter)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_EMOTE", ValeeraTextFilter)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_TEXT_EMOTE", ValeeraTextFilter)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_MONSTER_EMOTE", ValeeraTextFilter)
