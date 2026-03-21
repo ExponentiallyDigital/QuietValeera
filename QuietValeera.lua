@@ -18,10 +18,66 @@ local frame = CreateFrame("Frame")
 frame:RegisterEvent("PLAYER_LOGIN") -- fires once per session
 frame:SetScript("OnEvent", MuteSounds)
 
--- Ultra-fast text filter - only called for enabled chat types
--- No need to check if chat type is enabled; WoW only calls this filter for messages it will show
+-- Debug routing state
+local debugMode = false
+local debugWindowName = "Debug"
+
+local function GetDebugChatFrame()
+    for i = 1, NUM_CHAT_WINDOWS do
+        local frame = _G["ChatFrame" .. i]
+        if frame and FCF_GetWindowName and FCF_GetWindowName(frame) == debugWindowName then
+            return frame
+        end
+    end
+    return nil
+end
+
+local function CreateDebugChatFrame()
+    local frame = GetDebugChatFrame()
+    if frame then
+        return frame
+    end
+
+    if not FCF_OpenNewWindow then
+        return nil
+    end
+
+    frame = FCF_OpenNewWindow(debugWindowName)
+    if frame then
+        if FCF_SetWindowName then
+            FCF_SetWindowName(frame, debugWindowName)
+        end
+        if FCF_DockFrame then
+            FCF_DockFrame(frame)
+        end
+        if FCF_SavePositionAndDimensions then
+            FCF_SavePositionAndDimensions(frame)
+        end
+    end
+
+    return frame
+end
+
 local function ValeeraTextFilter(self, event, msg, author, ...)
-    return author == "Valeera Sanguinar"
+    if author ~= "Valeera Sanguinar" then
+        return false
+    end
+
+    if debugMode then
+        local debugFrame = GetDebugChatFrame() or CreateDebugChatFrame()
+        if debugFrame and debugFrame.AddMessage then
+            local prefix = "[QuietValeera Debug]"
+            local text
+            if event == "CHAT_MSG_MONSTER_EMOTE" or event == "CHAT_MSG_TEXT_EMOTE" or event == "CHAT_MSG_EMOTE" then
+                text = format("%s %s", author, msg)
+            else
+                text = format("%s: %s", author, msg)
+            end
+            debugFrame:AddMessage("|cff00ff00" .. prefix .. "|r " .. text)
+        end
+    end
+
+    return true
 end
 
 -- Register filter on specific events
@@ -31,3 +87,26 @@ ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", ValeeraTextFilter)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_EMOTE", ValeeraTextFilter)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_TEXT_EMOTE", ValeeraTextFilter)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_MONSTER_EMOTE", ValeeraTextFilter)
+
+-- Slash command for debug mode
+SLASH_QUIETVALEERA1 = "/quietvaleera"
+SlashCmdList["QUIETVALEERA"] = function(msg)
+    local command, arg = msg:match("^(%S+)%s*(.*)$")
+    if command and command:lower() == "debug" then
+        local value = arg and arg:lower()
+        if value == "on" then
+            debugMode = true
+            CreateDebugChatFrame()
+            print("QuietValeera: DEBUG mode enabled. Valeera text/emotes now appear in Debug channel.")
+            return
+        elseif value == "off" then
+            debugMode = false
+            print("QuietValeera: DEBUG mode disabled.")
+            return
+        end
+        print("QuietValeera usage: /quietvaleera debug on|off")
+        return
+    end
+
+    print("QuietValeera usage: /quietvaleera debug on|off")
+end
