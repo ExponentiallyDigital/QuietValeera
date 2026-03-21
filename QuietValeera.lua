@@ -23,10 +23,14 @@ local debugMode = false
 local debugWindowName = "Debug"
 
 local function GetDebugChatFrame()
+    local target = debugWindowName:lower()
     for i = 1, NUM_CHAT_WINDOWS do
         local frame = _G["ChatFrame" .. i]
-        if frame and FCF_GetWindowName and FCF_GetWindowName(frame) == debugWindowName then
-            return frame
+        if frame and FCF_GetWindowName then
+            local name = FCF_GetWindowName(frame)
+            if name and name:lower() == target then
+                return frame
+            end
         end
     end
     return nil
