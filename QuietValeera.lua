@@ -24,16 +24,45 @@ local debugWindowName = "Debug"
 
 local function GetDebugChatFrame()
     local target = debugWindowName:lower()
+
+    -- first try exact match using ChatFrame_GetMessageEvent, then fallback to string compare of frame name
     for i = 1, NUM_CHAT_WINDOWS do
         local frame = _G["ChatFrame" .. i]
-        if frame and FCF_GetWindowName then
-            local name = FCF_GetWindowName(frame)
+        if frame then
+            local name
+            if FCF_GetWindowName then
+                name = FCF_GetWindowName(frame)
+            elseif frame.GetName then
+                name = frame:GetName()
+            end
+
             if name and name:lower() == target then
                 return frame
             end
         end
     end
+
     return nil
+end
+
+local function ConfigureDebugGroups(frame)
+    if not frame then
+        return
+    end
+
+    if ChatFrame_RemoveAllMessageGroups then
+        ChatFrame_RemoveAllMessageGroups(frame)
+    end
+
+    -- Only show creature say/emote in Debug frame
+    if ChatFrame_AddMessageGroup then
+        ChatFrame_AddMessageGroup(frame, "MONSTER_SAY")
+        ChatFrame_AddMessageGroup(frame, "MONSTER_EMOTE")
+        -- optionally include yell as creature say variant
+        ChatFrame_AddMessageGroup(frame, "MONSTER_YELL")
+        ChatFrame_AddMessageGroup(frame, "MONSTER_BOSS_EMOTE")
+        ChatFrame_AddMessageGroup(frame, "TEXT_EMOTE")
+    end
 end
 
 local function CreateDebugChatFrame()
@@ -54,6 +83,7 @@ local function CreateDebugChatFrame()
         if FCF_DockFrame then
             FCF_DockFrame(frame)
         end
+        ConfigureDebugGroups(frame)
         if FCF_SavePositionAndDimensions then
             FCF_SavePositionAndDimensions(frame)
         end
