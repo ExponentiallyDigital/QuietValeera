@@ -2,7 +2,7 @@
 ## Title: QuietValeera
 ## Notes: Disable Valeera's speech in Midnight Delves
 ## Author: ArcNineOhNine
-## Version: 0.1.1
+## Version: 0.1.2
 ## Category: ArcNineOhNine
 ## IconTexture: Interface\AddOns\QuietValeera\media\QuietValeera-icon
 ## SavedVariables:

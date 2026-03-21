@@ -18,12 +18,26 @@ local frame = CreateFrame("Frame")
 frame:RegisterEvent("PLAYER_LOGIN") -- fires once per session
 frame:SetScript("OnEvent", MuteSounds)
 
+-- Check if a chat type is enabled in chat settings
+local function IsChatTypeEnabled(event)
+    local chatTypeIndex = GetChatTypeIndex(event)
+    if not chatTypeIndex then return true end
+    
+    local info = ChatTypeInfo[chatTypeIndex]
+    return info and info.shown ~= false
+end
+
 local function ValeeraTextFilter(self, event, msg, author, ...)
+    -- Check if Valeera sent this message
     if author == "Valeera Sanguinar" then
-        return true     -- block the line
+        -- If the chat type is disabled, block it (user doesn't want to see it anyway)
+        if not IsChatTypeEnabled(event) then
+            return true
+        end
+        -- Chat type is enabled, so block Valeera's messages specifically
+        return true
     end
-    -- optional: block by keyword
-    -- if msg:find("some Valeera phrase") then return true end
+    
     return false        -- allow others
 end
 
