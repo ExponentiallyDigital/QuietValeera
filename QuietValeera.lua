@@ -42,18 +42,9 @@ local function ConfigureDebugGroups(frame)
         return
     end
 
+    -- Remove all message groups so debug frame only receives messages via filter
     if ChatFrame_RemoveAllMessageGroups then
         ChatFrame_RemoveAllMessageGroups(frame)
-    end
-
-    -- Only show creature say/emote in Debug frame
-    if ChatFrame_AddMessageGroup then
-        ChatFrame_AddMessageGroup(frame, "MONSTER_SAY")
-        ChatFrame_AddMessageGroup(frame, "MONSTER_EMOTE")
-        -- optionally include yell as creature say variant
-        ChatFrame_AddMessageGroup(frame, "MONSTER_YELL")
-        ChatFrame_AddMessageGroup(frame, "MONSTER_BOSS_EMOTE")
-        ChatFrame_AddMessageGroup(frame, "TEXT_EMOTE")
     end
 end
 
