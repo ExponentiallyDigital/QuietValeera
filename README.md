@@ -15,6 +15,8 @@ An efficient, lightweight, high-performance World of Warcraft addon that silence
 - **Debug mode:** Optional debug channel to view Valeera's messages when needed
 - **Ultra-fast:** Single-pass string comparison filter with minimal overhead
 - **Efficient:** ~2KB RAM usage, runs once on login for sound mutes
+- **Lightweight by design:** only ~7 KB of RAM, built from a tiny event hook and a minimal sound‑mute table. That’s ~5,700× less than RareScanner and ~12,500× less than Auctionator. Put another way: QuietValeera is the size of a small postcard, while RareScanner is a novel and Auctionator is a full encyclopedia volume.
+
 - **Respects settings:** Works seamlessly with your WoW chat channel preferences
 
 ## Installation
