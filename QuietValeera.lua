@@ -1,4 +1,6 @@
--- from ShutUpValeera addon: faster for processing, free memory, only exec on login not enter world
+-- Cache API reference for performance (avoids global lookup on each iteration)
+local MuteSoundFile = type(MuteSoundFile) == "function" and MuteSoundFile or nil
+
 -- Mute Valeera Sound IDs
 local soundIDs = {
     7243762, 7243934, 7329273, 7430043, 7430047, 7430050, 7430053, 7430056, 7430059, 7430063, 7430066, 
@@ -20,6 +22,10 @@ local muted = false
 -- Function to mute the sound files
 local function MuteSounds()
     if muted then return end
+    if not MuteSoundFile then
+        print("QuietValeera: MuteSoundFile API not available on this client")
+        return
+    end
     for i = 1, #soundIDs do
         MuteSoundFile(soundIDs[i])
     end
@@ -43,7 +49,7 @@ local function GetDebugChatFrame()
     local target = debugWindowName:lower()
 
     -- Use FCF_GetChatWindowInfo to reliably get window names
-    for i = 1, NUM_CHAT_WINDOWS do
+    for i = 1, (NUM_CHAT_WINDOWS or 0) do
         local name = FCF_GetChatWindowInfo(i)
         if name and name:lower() == target then
             return _G["ChatFrame" .. i]
@@ -97,7 +103,7 @@ local function CreateDebugChatFrame()
 end
 
 local function ValeeraTextFilter(self, event, msg, author, ...)
-    if author ~= "Valeera Sanguinar" then
+    if not author or author ~= "Valeera Sanguinar" then
         return false
     end
 
@@ -122,13 +128,15 @@ local function ValeeraTextFilter(self, event, msg, author, ...)
     return true
 end
 
--- Register filter on specific events
-ChatFrame_AddMessageEventFilter("CHAT_MSG_MONSTER_SAY", ValeeraTextFilter)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_MONSTER_YELL", ValeeraTextFilter)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", ValeeraTextFilter)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_EMOTE", ValeeraTextFilter)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_TEXT_EMOTE", ValeeraTextFilter)
-ChatFrame_AddMessageEventFilter("CHAT_MSG_MONSTER_EMOTE", ValeeraTextFilter)
+-- Register filter on specific events (if API available)
+if ChatFrame_AddMessageEventFilter then
+    ChatFrame_AddMessageEventFilter("CHAT_MSG_MONSTER_SAY", ValeeraTextFilter)
+    ChatFrame_AddMessageEventFilter("CHAT_MSG_MONSTER_YELL", ValeeraTextFilter)
+    ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", ValeeraTextFilter)
+    ChatFrame_AddMessageEventFilter("CHAT_MSG_EMOTE", ValeeraTextFilter)
+    ChatFrame_AddMessageEventFilter("CHAT_MSG_TEXT_EMOTE", ValeeraTextFilter)
+    ChatFrame_AddMessageEventFilter("CHAT_MSG_MONSTER_EMOTE", ValeeraTextFilter)
+end
 
 -- Slash command for debug mode
 SLASH_QUIETVALEERA1 = "/quietvaleera"
@@ -139,7 +147,7 @@ SlashCmdList["QUIETVALEERA"] = function(msg)
         if value == "on" then
             debugMode = true
             CreateDebugChatFrame()
-            print("QuietValeera: DEBUG mode enabled. Valeera text/emotes now appear in Debug channel.")
+            print("QuietValeera: DEBUG mode enabled. Valeera text/emotes now appear in Debug window.")
             return
         elseif value == "off" then
             debugMode = false
