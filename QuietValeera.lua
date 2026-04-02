@@ -5,7 +5,7 @@ local MuteSoundFile = type(MuteSoundFile) == "function" and MuteSoundFile or nil
 -- added muting when you target Valeera:
 -- 1388602 My loyalties are my own
 -- 1388603 The pleasure is mine
--- 1388604 I wouuldn't cross me if i were you
+-- 1388604 I wouldn't cross me if i were you
 -- 1388605 Let's talk
 -- 1388606 Do you prefer your entrails cut...
 -- 1388607 I will be your death
