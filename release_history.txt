@@ -1,3 +1,25 @@
+— 2026-04-02 v0.1.12 ToC sync, typo fix
+    QuietValeera.lua | 1 insertion, 1 deletion
+
+— 2026-04-02 v0.1.11 ADD muting when you target Valeera
+    QuietValeera.lua | 24 insertions, 15 deletions
+    media/QuietValeera-icon.blp | added
+    media/QuietValeera-icon.png | added
+
+— 2026-03-23 ADD optimisations and added additional error checks (defensive checks).
+    QuietValeera.lua | 19 insertions, 11 deletions
+
+— 2026-03-23 code formatting, no functional changes
+    QuietValeera.lua | 15 insertions, 1 deletion
+    QuietValeera.toc | 1 insertion, 1 deletion
+
+— 2026-03-22 ADD typical memory consumption to readme (tiny!)
+    QuietValeera.toc | 1 insertion, 1 deletion
+    README.md | 2 insertions, 0 deletions
+
+— 2026-03-21 Update release_history.txt for v0.1.10
+    release_history.txt | 45 insertions, 0 deletions
+
 — 2026-03-21 v0.1.10 DOC updated readme with new functionality (now also mutes chat text and allows for a debug chat window where all her chat messages are routed), added images to readme.
     QuietValeera.toc | 2 insertions, 2 deletions
     README.md | 77 insertions, 17 deletions
