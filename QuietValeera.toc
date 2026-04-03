@@ -2,7 +2,7 @@
 ## Title: QuietValeera
 ## Notes: Disable Valeera's audio, chat, and emotes in Midnight Delves
 ## Author: ArcNineOhNine
-## Version: 0.1.12
+## Version: 0.1.13
 ## Category: ArcNineOhNine
 ## IconTexture: Interface\AddOns\QuietValeera\media\QuietValeera-icon
 ## SavedVariables:

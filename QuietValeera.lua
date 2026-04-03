@@ -1,4 +1,4 @@
-s-- Cache API reference for performance (avoids global lookup on each iteration)
+-- Cache API reference for performance (avoids global lookup on each iteration)
 local MuteSoundFile = type(MuteSoundFile) == "function" and MuteSoundFile or nil
 
 -- Mute Valeera Sound IDs
