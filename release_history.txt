@@ -1,3 +1,10 @@
+— 2026-04-03 v0.1.13 CF release: FIX QuietValeera.lua:1-2: '=' expected near 'local'
+    QuietValeera.lua | 1 insertion, 1 deletion
+    QuietValeera.toc | 1 insertion, 1 deletion
+
+— 2026-04-02 Update release_history.txt for v0.1.12
+    release_history.txt | 22 insertions, 0 deletions
+
 — 2026-04-02 v0.1.12 ToC sync, typo fix
     QuietValeera.lua | 1 insertion, 1 deletion
 
