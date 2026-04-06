@@ -141,7 +141,10 @@ end
 if ChatFrame_AddMessageEventFilter then
     ChatFrame_AddMessageEventFilter("CHAT_MSG_MONSTER_SAY", ValeeraTextFilter)
     ChatFrame_AddMessageEventFilter("CHAT_MSG_MONSTER_YELL", ValeeraTextFilter)
+    ChatFrame_AddMessageEventFilter("CHAT_MSG_MONSTER_WHISPER", ValeeraTextFilter)
     ChatFrame_AddMessageEventFilter("CHAT_MSG_SAY", ValeeraTextFilter)
+    ChatFrame_AddMessageEventFilter("CHAT_MSG_YELL", ValeeraTextFilter)
+--    ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER", ValeeraTextFilter)
     ChatFrame_AddMessageEventFilter("CHAT_MSG_EMOTE", ValeeraTextFilter)
     ChatFrame_AddMessageEventFilter("CHAT_MSG_TEXT_EMOTE", ValeeraTextFilter)
     ChatFrame_AddMessageEventFilter("CHAT_MSG_MONSTER_EMOTE", ValeeraTextFilter)
