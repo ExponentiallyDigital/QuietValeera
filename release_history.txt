@@ -1,3 +1,20 @@
+— 2026-04-08 v0.1.18 CF release: now also silences Delve boss fight chat messages + updated README
+    QuietValeera.toc | 1 insertion, 1 deletion
+
+— 2026-04-08 Merge branch 'main' of https://github.com/ExponentiallyDigital/QuietValeera
+
+— 2026-04-08 v0.1.17 CF release: toc bump
+    QuietValeera.toc | 2 insertions, 2 deletions
+
+— 2026-04-08 v0.1.17 CF release: toc bump
+    QuietValeera.toc | 2 insertions, 2 deletions
+
+— 2026-04-08 v0.1.17 CF release: updated README to match functionality
+    README.md | 2 insertions, 16 deletions
+
+— 2026-04-08 Update release_history.txt for v0.1.16
+    release_history.txt | 14 insertions, 0 deletions
+
 — 2026-04-08 v0.1.16 CF release: quell end of delve boss fight chat messages (11 messages, 224 characters)
     QuietValeera.toc | 1 insertion, 1 deletion
 
