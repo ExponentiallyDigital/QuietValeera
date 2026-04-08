@@ -16,8 +16,8 @@ An efficient, lightweight, high-performance World of Warcraft addon that silence
 - **Ultra-fast:** Single-pass string comparison filter with minimal overhead
 - **Efficient:** ~2KB RAM usage, runs once on login for sound mutes
 - **Lightweight by design:** only ~7 KB of RAM, built from a tiny event hook and a minimal sound‑mute table. That’s ~5,700× less than RareScanner and ~12,500× less than Auctionator. Put another way: QuietValeera is the size of a small postcard, while RareScanner is a novel and Auctionator is a full encyclopedia volume.
-
 - **Respects settings:** Works seamlessly with your WoW chat channel preferences
+- **Delve Boss:** v0.1.16+ hides Valeera chat messages on end of Delve boss fights.
 
 ## Installation
 
@@ -48,21 +48,7 @@ To disable debug mode:
 
 ## Is this addon really necessary?
 
-In a recent Twilight Crypts Delve, I had 109 lines of Valeer's chat that I didn't see (as recorded instead in the debug log while testing). That's a lot of lines of text scrolling your other chat mesages away into oblivion. Sure, you can use a separate window for her and other creature messages but the authour's feeling is that her chat doesn't add to the game experience.
-
-I use a couple of different chat windows to separate out message sources: General, Guild, Instance, 1-5 (1. General, 2. Trade, 3. LocalDefense, 4. Services, 5. WorldDefense), Debug, and Loot.
-
-### Note
-
-Valeera does emote "system" type messages in chat, I decided to leave these enabled as in a complete Delve she only said a few lines eg.
-
-![Screenshot: GuildRouter UI](./images/valeera-system-messages-1.png)
-
-If there's interest, I could disable the "Valeers Sanguinar says: xyz" messages via a slash command.
-
-Also, if I'd disabled these "system" messages from her that'd make my "Loot" window look odd: in the below example I'd not have been able to see what Valeera contributed to my ore mining:
-
-![Screenshot: GuildRouter UI](./images/valeera-system-messages-2.png)
+In a single Twilight Crypts Delve, testing revealed that Valeera generated 109 lines of chat alone. When you factor in boss fight dialogues, you're looking at over 120+ messages scrolling your important Guild, Instance, and Loot messages into oblivion QuietValeera ends the clutter. She no longer barrages you with chatter, "talks" when you target her, her emotes are silenced, and your chat windows stay clean. Install it, forget it, and enjoy the silence!
 
 ## Technical details
 
