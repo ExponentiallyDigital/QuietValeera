@@ -1,3 +1,5 @@
+2026-04-09 this addon is no longer being developed, please feel free to fork this repo and resurrect.
+
 # QuietValeera
 
 Fed up with hearing and seeing the same emotes from Valeera?
